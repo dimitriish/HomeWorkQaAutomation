@@ -30,9 +30,12 @@ public class DbTests {
 
     @Test
     public void notAddingRowWithIndexFrom1To10IntoAnimal() {
-        int result = DbService
-                .executeUpdate("insert into public.animal (id, \"name\", age, \"type\", sex, place)"
-                        + "values (5, 'anton', 18, 1, 0, 0)");
+        int result = 0;
+        for (int i = 1; i < 11; i++) {
+            result += DbService
+                    .executeUpdate("insert into public.animal (id, \"name\", age, \"type\", sex, place)"
+                            + "values (" + i + ", 'anton', 18, 1, 0, 0)");
+        }
         Assertions.assertEquals(result, 0);
     }
 
